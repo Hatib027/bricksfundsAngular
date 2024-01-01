@@ -1,0 +1,71 @@
+<div class="wrapper">
+    <div class="container">
+
+        <form class="p-3 mt-3" autocomplete="off" (ngSubmit)="addPayment()">
+
+
+
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Username</mat-label>
+                <input required minlength="4" name="username" [(ngModel)]="payment.userName" matInput disabled="true"
+                    placeholder="Enter here">
+            </mat-form-field>
+
+            <!--Password-->
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Enter Amount</mat-label>
+                <input required name="inramount" type="number" min="2000" (keyup)="changeToDollar()"
+                    [(ngModel)]="inramount" matInput placeholder="Enter here">
+
+            </mat-form-field>
+            <p>your amount in $ is :{{payment.amount}}</p>
+
+
+
+            <mat-form-field class="full-width" appearance="outline">
+
+
+                <mat-label>Start-Date</mat-label>
+                <input matInput [matDatepicker]="picker2" name="dateofrequest" [(ngModel)]="payment.dateofrequest"
+                    placeholder="DOB(DD/MM/YYYY)" required readonly />
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+
+
+            </mat-form-field>
+
+
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Select Bank Name</mat-label>
+                <mat-select name="bankName" [(ngModel)]="payment.bankName">
+                    <mat-option *ngFor="let bank of banks" value="{{bank.bankname}}">{{bank.bankname}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <!--Last name-->
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Enter IFSCCode </mat-label>
+                <input required type="number" name="iffcCode" [(ngModel)]="payment.iffcCode" matInput
+                    placeholder="Enter here" [minLength]="11" [maxlength]="11">
+            </mat-form-field>
+
+
+
+
+
+            <!--Phone number-->
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Enter Account Number</mat-label>
+                <input required maxlength="10" name="phone" [(ngModel)]="payment.accountNumber" minlength="10"
+                    type="number" matInput placeholder="Enter here">
+            </mat-form-field>
+
+
+
+            <button class="btn mt-3" type="submit">Register</button>
+        </form>
+
+
+    </div>
+</div>
